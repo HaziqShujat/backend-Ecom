@@ -1,0 +1,88 @@
+// import express from "express";
+// import 'dotenv/config';
+
+// const app = express();
+
+// app.get('/', (req, res) => {
+//     res.send("hello from server");
+// });
+// app.get('/about', (req, res) => {
+//     res.send("hello from server this is about page");
+// });
+
+
+
+// const psd ="CINkM3StYqCdRLwr"
+// const username="hazraja67"
+
+
+
+//  export default  app; 
+
+
+
+import express from 'express';
+
+const app = express();
+
+
+
+
+app.get('/', (req, res) => {
+  
+  res.send('Hello World!');
+});
+app.get('/api/products', (req, res) => {
+
+  const products = [
+    {
+      id: 1,
+      name: 'Smartphone',
+      category: 'Electronics',
+      price: 699.99,
+      inStock: true
+    },
+    {
+      id: 2,
+      name: 'Wireless Headphones',
+      category: 'Electronics',
+      price: 149.99,
+      inStock: false
+    },
+    {
+      id: 3,
+      name: 'Coffee Maker',
+      category: 'Home Appliances',
+      price: 89.99,
+      inStock: true
+    },
+    {
+      id: 4,
+      name: 'Running Shoes',
+      category: 'Footwear',
+      price: 120.00,
+      inStock: true
+    },
+    {
+      id: 5,
+      name: 'Yoga Mat',
+      category: 'Sports',
+      price: 25.00,
+      inStock: true
+    }
+  ];
+  if(req.query.search){
+    const searchitem = products.filter((product)=>product.name.includes(req.query.search))
+    res.send(searchitem)
+    return
+  }
+setTimeout(()=>{
+   res.send(products);
+},3000)
+ 
+});
+
+
+app.listen(3000, () => {
+  console.log('Express server initialized');
+});
